@@ -1,4 +1,8 @@
 . .\utils.ps1
+. .\setting.ps1
+. .\commands.ps1
+
+# TODO: 改名 qupload，同时 scoop json 中把 qupload 放进 path 里，方便使用
 
 # Stop the script when error occured
 $ErrorActionPreference = "Stop"
@@ -54,8 +58,8 @@ Write-Host ""
 # Check config file
 if (-Not (Test-Path $configFile -PathType Leaf)) {
     # the .qshell dir should exist now
-    $setting = askUserForSettings $commandPrefix
-    ConvertTo-Json $setting
+    $setting = askForSettings $commandPrefix
+    ConvertTo-Json $setting | Out-File $configFile -Encoding UTF8
 }
 
 
