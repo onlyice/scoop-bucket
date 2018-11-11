@@ -11,21 +11,34 @@ TODO:
 * 在 Windows 资源管理器中上传 Gif
 * 在 IDE 中上传 Gif
 
-## 安装
+## 快速开始
 
-这个工具基于腾讯云 COS 团队提供的命令行工具 [coscmd][] 封装而成。coscmd 是使用 Python 编写的。因此需要先安装 Python 3（Python 2.7 不受支持，因为我不想写额外的代码去兼容它）。
+如果你访问网络需要走代理（比如在公司环境中），先设置好 `http_proxy` 及 `https_proxy` 环境变量。
 
-下载 Python [安装包][python-download] 并运行它，安装过程中需要把「Add Python 3.x to Path」勾选上。安装完后，打开一个 **新的** 命令行窗口（Cmd、PowerShell 均可），输入 `pip` 并回车。如果找不到该命令，可能是环境变量还没生效，重启系统。
+这个工具使用 [Scoop][scoop] 简化安装，Scoop 要求 PowerShell 3.0 才可使用:
 
-pip 是 Python 包管理器，我们要通过 pip 拿到 coscmd。如果你的网络环境需要代理才能访问外网，先设置好 `http_proxy` 和 `https_proxy` 环境变量。打开一个命令行窗口，输入这行命令安装 coscmd：
+* 如果你是 Windows 7 系统，系统自带的是 2.0 版本，你需要安装新版本的 PowerShell（建议 5.x 版本）；你可以打开一个 PowerShell 窗口，输入 `$PSVersionTable` 观察是什么版本
+* 如果你是 Windows 10 系统，系统已经自带了高版本 PowerShell，不需要做额外操作
 
-```shell
-pip install -U coscmd
+确保 PowerShell 满足要求后，打开一个新的 PowerShell 窗口，执行：
+
+```powershell
+# 允许运行远程脚本
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+# 安装 Scoop
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+# 添加 cosupload 所在的 bucket
+scoop bucket add onlyice https://github.com/onlyice/scoop-bucket.git
+# 安装 cosupload
+scoop install cosupload
 ```
 
-如果没有报错，那么在命令行中输入 `coscmd --help` 命令，观察是否安装成功。
+安装过程会自动安装 Python 3，并使用 pip 去安装 COS 的命令行工具 [coscmd][]。如果 pip 的过程有失败，请先运行 `scoop uninstall cosupload`，再运行 `scoop install cosupload` 重新安装。
+
+安装完成后，按屏幕提示进到 `C:\Users\<username>\scoop\apps\cosupload\<version>`  
 
 ## 使用
 
 [coscmd]: https://github.com/tencentyun/coscmd
 [python-download]: https://www.python.org/downloads/
+[scoop]: https://scoop.sh

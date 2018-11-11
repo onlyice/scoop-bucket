@@ -10,20 +10,24 @@
         "re": "v([\\d.]+)"
     },
     "url": [
-        "https://raw.githubusercontent.com/onlyice/scoop-bucket/cosupload-v0.1/scripts/cosupload/cosupload-install-context.reg",
-        "https://raw.githubusercontent.com/onlyice/scoop-bucket/cosupload-v0.1/scripts/cosupload/cosupload-uninstall-context.reg"
+        "https://raw.githubusercontent.com/onlyice/scoop-bucket/cosupload-v0.1/scripts/cosupload/cosupload.ps1",
+        "https://raw.githubusercontent.com/onlyice/scoop-bucket/master/scripts/cosupload/cosupload-install-context.reg",
+        "https://raw.githubusercontent.com/onlyice/scoop-bucket/master/scripts/cosupload/cosupload-uninstall-context.reg"
+    ],
+    "hash": [
+        "04cd6b086a99f4e5375d524d0bb68103dc5372040245afe6742981e7525a32b6",
+        "b2b9989cc872221e033ba94c04c98951bef7ae3902441ccf10c0b542c4226118",
+        "593debf1ca620dd9b4e43d4f3366c2974288f8196fcfd636034eb4f75896846b"
     ],
     "autoupdate": {
         "url": "https://raw.githubusercontent.com/onlyice/scoop-bucket/cosupload-v$version/scripts/cosupload/cosupload.ps1"
     },
     "pre_install": "pip install -U coscmd",
     "post_install": [
-        "if(Test-Path(\"$dir\\install.reg\")) {",
         "  $cosuploadpath = \"$dir\\cosupload.ps1\".Replace('\\', '\\\\')",
         "  $content = Get-Content \"$dir\\cosupload-install-context.reg\"",
         "  $content = $content.Replace('$cosuploadpath', $cosuploadpath)",
-        "  $content | Set-Content -Path \"$dir\\cosupload-install-context.reg\"",
-        "}"    
+        "  $content | Set-Content -Path \"$dir\\cosupload-install-context.reg\""
     ],
     "notes": [
         "Add 'Upload to COS' as a context menu option by running: '$dir\\cosupload-install-context.reg'"
