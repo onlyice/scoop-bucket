@@ -26,7 +26,7 @@
     "post_install": [
         "  $cosuploadpath = \"$dir\\cosupload.ps1\".Replace('\\', '\\\\')",
         "  $content = Get-Content \"$dir\\cosupload-install-context.reg\"",
-        "  $content = $content.Replace('$cosuploadpath', $cosuploadpath)",
+        "  $content = $content.Replace('$cosupload', $cosuploadpath)",
         "  $content | Set-Content -Path \"$dir\\cosupload-install-context.reg\""
     ],
     "notes": [
