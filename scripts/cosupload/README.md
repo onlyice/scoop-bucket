@@ -35,7 +35,7 @@ scoop install cosupload
 
 安装过程会自动安装 Python 3，并使用 pip 去安装 COS 的命令行工具 [coscmd][]。如果 pip 的过程有失败，请先运行 `scoop uninstall cosupload`，再运行 `scoop install cosupload` 重新安装。
 
-安装完成后，按屏幕提示进到 `C:\Users\<username>\scoop\apps\cosupload\<version>`  
+安装完成后，按屏幕提示进到 `C:\Users\<username>\scoop\apps\cosupload\current` 中双击运行 `cosupload-install-context.reg`，以将 "Upload to COS" 加入到资源管理器右键菜单中。如果后面你不需要这个右键菜单项了，你可以运行 `cosupload-uninstall-context.reg`。
 
 ## 使用
 

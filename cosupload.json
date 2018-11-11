@@ -5,6 +5,7 @@
     "depends": [
         "python"
     ],
+    "bin": "cosupload.ps1",
     "checkver": {
         "url": "https://raw.githubusercontent.com/onlyice/scoop-bucket/master/scripts/cosupload/README.md",
         "re": "v([\\d.]+)"
