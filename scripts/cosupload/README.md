@@ -37,8 +37,47 @@ scoop install cosupload
 
 安装完成后，按屏幕提示进到 `C:\Users\<username>\scoop\apps\cosupload\current` 中双击运行 `cosupload-install-context.reg`，以将 "Upload to COS" 加入到资源管理器右键菜单中。如果后面你不需要这个右键菜单项了，你可以运行 `cosupload-uninstall-context.reg`。
 
+安装完成后，在命令行中会多了两个命令，分别是 `coscmd` 及 `cosupload`。`cosupload` 是 PowerShell 写的脚本，本质上是调用 `coscmd` 做操作。
+
 ## 使用
+
+第一次使用 `cosupload` 前，需要先参考 [这里][coscmd-config] 设置 COS 所使用的参数配置，如：
+
+```shell
+coscmd config -r ap-guangzhou -a <ak> -s <sk> -b <bucket>
+```
+
+配置文件默认会放在 `~\.cos.conf` 作为全局配置。如果你在一些场景想用单独的配置，可以使用 `-c` 参数指定配置文件位置：
+
+```shell
+coscmd -c some-other-dir\.cos.conf config -r ap-guangzhou -a <ak> -s <sk> -b <bucket>
+```
+
+cosupload 运行时会从被上传文件所在目录起，一级级往上找 `.cos.conf` 文件，作为上传所使用的配置文件。
+
+配置好后，就可以在文件管理器中右键，选择 "Upload to COS" 了。上传完后会自动设置一个 `wget` 命令行在剪贴板中。
+
+### 命令行使用
+
+```shell
+cosupload <file-to-upload> <key-in-bucket>
+```
+
+如：
+
+```shell
+cosupload my-file.txt another-name-in-bucket.txt
+```
+
+会把 `my-file.txt` 上传到 bucket 中的 `another-name-in-bucket.txt` 位置。
+
+### IDE 中使用
+
+IDE 大多数提供了使用外部工具的能力。比如 JetBrains 系的 External Tools 功能，可以用这种方式配置：
+
+![](https://raw.githubusercontent.com/onlyice/scoop-bucket/master/assets/cosupload/jetbrains-ide-config.png)
 
 [coscmd]: https://github.com/tencentyun/coscmd
 [python-download]: https://www.python.org/downloads/
 [scoop]: https://scoop.sh
+[coscmd-config]: https://github.com/tencentyun/coscmd#%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0
