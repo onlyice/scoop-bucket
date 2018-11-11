@@ -1,0 +1,24 @@
+{
+    "homepage": "https://github.com/onlyice/scoop-bucket/tree/master/scripts/cosupload",
+    "license": "MIT",
+    "version": "TODO",
+    "depends": [
+        "python"
+    ],
+    "checkver": {
+        "url": "https://raw.githubusercontent.com/onlyice/scoop-bucket/master/scripts/cosupload/README.md",
+        "re": "v([\\d.]+)"
+    },
+    "autoupdate": {
+        "url": "TODO"
+    },
+    "pre_install": "pip install -U coscmd",
+    "post_install": [
+        "if(Test-Path(\"$dir\\install.reg\")) {",
+        "  $cosuploadpath = \"$dir\\cosupload.ps1\".Replace('\\', '\\\\')",
+        "  $content = Get-Content \"$dir\\cosupload-install-context.reg\"",
+        "  $content = $content.Replace('$cosuploadpath', $cosuploadpath)",
+        "  $content | Set-Content -Path \"$dir\\cosupload-install-context.reg\"",
+        "}"    
+    ]
+}
