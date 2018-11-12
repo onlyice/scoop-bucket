@@ -6,10 +6,13 @@ Windows 上一键上传文件到 COS。
 
 ## 效果
 
-TODO:
+在文件管理器中上传文件至 COS：
 
-* 在 Windows 资源管理器中上传 Gif
-* 在 IDE 中上传 Gif
+![](https://raw.githubusercontent.com/onlyice/scoop-bucket/master/assets/cosupload/demo-1.gif)
+
+在 IDE 中上传文件至 COS：
+
+![](https://raw.githubusercontent.com/onlyice/scoop-bucket/master/assets/cosupload/demo-2.gif)
 
 ## 快速开始
 
