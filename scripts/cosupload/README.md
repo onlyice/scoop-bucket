@@ -72,7 +72,7 @@ cosupload <file-to-upload> <key-in-bucket>
 cosupload my-file.txt another-name-in-bucket.txt
 ```
 
-会把 `my-file.txt` 上传到 bucket 中的 `another-name-in-bucket.txt` 位置。
+会把 `my-file.txt` 上传到 bucket 中的 `another-name-in-bucket.txt` 位置。当然你也可以用同一个文件名。
 
 ### IDE 中使用
 
@@ -80,7 +80,12 @@ IDE 大多数提供了使用外部工具的能力。比如 JetBrains 系的 Exte
 
 ![](https://raw.githubusercontent.com/onlyice/scoop-bucket/master/assets/cosupload/jetbrains-ide-config.png)
 
+## 问题排查
+
+由于底层用的 coscmd 在错误处理上做得不好，如果出现了奇怪的问题，比如文件传不上去，请将本机的 `cos_cmd.py`（一般位于 `~\scoop\apps\python\3.7.0\Lib\site-packages\coscmd\cos_cmd.py`）的这行 [代码][coscmd-code]，从 `return 0` 改为 `raise`，再尝试去 `cosupload` 看错误信息。
+
 [coscmd]: https://github.com/tencentyun/coscmd
 [python-download]: https://www.python.org/downloads/
 [scoop]: https://scoop.sh
 [coscmd-config]: https://github.com/tencentyun/coscmd#%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0
+[coscmd-code]: https://github.com/tencentyun/coscmd/blob/d4217742eda3405d3f22a9d95c36c6452b9321cd/coscmd/cos_cmd.py#L719
