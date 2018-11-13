@@ -1,4 +1,4 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\*\shell\Upload to Cos\command]
-@="\"$cosupload\" \"%1\""
+@="powershell \"$cosupload\" \"%1\""
